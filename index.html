@@ -24,8 +24,8 @@ fetch(url)
     console.log(data);
     gb = data;
     var li = gb['channel']['last_entry_id'];
-    lat = Number(gb['feeds'][99]['field1']);
-    long = Number(gb['feeds'][99]['field2']);
+    lat = Number(gb['feeds'][li-1]['field1']);
+    long = Number(gb['feeds'][li-1]['field2']);
     console.log(li,lat,long);
     map.innerHTML = '<iframe width="700" height="300" src="https://maps.google.com/maps?q='+ lat +','+long+'&amp;z=15&amp;output=embed"></iframe>';
   })
