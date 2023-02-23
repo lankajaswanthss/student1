@@ -15,8 +15,9 @@
     <div id="embedmap" style="width: 100%; height: 600px;"></div>
     <br>
     <br>
+
     <p id="time"></p>
-    <p id="add"></p>
+    <p id="address"></p>
     <div id="button">
         <button onclick="refresh()" class="button-28" role="button">Refresh</button>
         <br>
@@ -40,11 +41,11 @@
         setTimeout(myMap,2000);
         
        
-        setInterval(repeat,10000);
-       
+        setInterval(repeat,20000);
+        
+        
 function repeat(){
-
-    
+  
     const channelId = '2013276';
 const apiKey = '3UIYRI7DJR2557GL';
 const url = `https://api.thingspeak.com/channels/${channelId}/feeds.json?api_key=${apiKey}`;
@@ -72,16 +73,20 @@ fetch(url)
   var td="Location is updated at "+ gmtTime.toLocaleString() + " ";
     document.getElementById("time").innerHTML =td ;   
     console.log(gmtTime);
-        const url = "https://nominatim.openstreetmap.org/reverse?format=json&lat=" + lat + "&lon=" + long;
+    const url1 = "https://nominatim.openstreetmap.org/reverse?format=json&lat=" + lat + "&lon=" + long;
 
-                fetch(url)
-  .then(response => response.json())
-  .then(data => {
-    console.log(data);
-    loc=data;
-    add = '<b>Address: </b>' +loc['display_name'];
-    document.getElementById("address").innerHTML = add;
+fetch(url1)
+.then(response => response.json())
+.then(data => {
+console.log(data);
+loc=data;
+add = '<b>Address: </b>' +loc['display_name'];
+console.log(add);
+document.getElementById("address").innerHTML = add;   
+});  
+
     }
+    
     if(lat==0){
         var td="Location is not available"+ " ";
         document.getElementById("time").innerHTML =td ;  
@@ -139,7 +144,6 @@ var mapProp= {
  marker = new google.maps.Marker({ position:latlong,map:map,title:"You are here!" });
  mapp = new google.maps.Marker({ position:latilongi,map:map,title:"You are here!",animation:google.maps.Animation.BOUNCE });
 }
-    
 </script>
 
 
